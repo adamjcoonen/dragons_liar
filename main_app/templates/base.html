@@ -19,8 +19,9 @@
                     <li><a href="/" class="leftlogo">&nbsp;&nbsp; Dragons' Lair</a></li>
                 </ul>
                 <ul class='right'>
-                    <li><a href="/about">About Dragon's</a></li>
-                    <li><a href="/dragons/">View All My dragons</a></li>
+                    <li><a href="{% url 'dragon_create' %}">Add a Dragon</a></li>
+                    <li><a href="{% url 'about' %}">About Dragons' Lair</a></li>
+                    <li><a href="{% url 'dragon_index' %}">View All My Dragons</a></li>
                 </ul>
             </div>
         </nav>
@@ -29,9 +30,6 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class='page-footer'>
-        <div class="page-footer"></div>
-        
-    </footer>
+
 </body>
 </html>

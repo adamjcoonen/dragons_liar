@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Dragons' Lair</h1>
+<h4>Where the Greatest of Wyrms Gather</h4>
+
+{% for dragon in dragons %}
+
+<div class="card"> 
+    <a href="{% url 'detail' dragon.id %}">
+    <div class="card-content">
+        <span class="card-title">{{ dragon.name }}</span>
+        <p>Type: {{ dragon.d_type }}</p>
+        <p>Subtype: {{ dragon.subtype }}</p>
+        <p>Age: {{ dragon.age }}</p>
+        <p>Age: {{ dragon.lore }}</p>
+
+        </div>
+        </a>
+    </div>
+
+{% endfor%}
+
+{% endblock %}
