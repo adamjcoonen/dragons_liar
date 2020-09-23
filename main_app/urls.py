@@ -9,7 +9,7 @@ urlpatterns = [
     path('dragons/', views.dragons_index, name='dragon_index'),
     #page for he 
     path('dragons/<int:dragon_id>', views.dragons_detail, name='detail'),
-    path('cats/create/', views.DragonCreate.as_view(), name='dragon_create'),
+    path('dragons/create/', views.DragonCreate.as_view(), name='dragon_create'),
 ]
 
 
