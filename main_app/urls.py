@@ -13,6 +13,7 @@ urlpatterns = [
     path('dragons/<int:pk>/update/', views.DragonUpdate.as_view(), name='dragon_update'),
     path('dragons/<int:pk>/delete/', views.DragonDelete.as_view(), name='dragon_delete'),
     path('dragons/<int:dragon_id>/add_adventurer/', views.add_adventurer, name='add_adventurer'),
+    path('dragons/<int:dragon_id>/assoc_loot/<int:loot_id>/', views.assoc_loot, name='assoc_loot')
 ]
 
 

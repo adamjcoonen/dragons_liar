@@ -31,6 +31,12 @@ AGES = (
     ('G', 'Great Wyrm')
 )
 
+class Loot(models.Model):
+    name = models.CharField(max_length=50)
+    value = models.IntegerField()
+    magic = models.BooleanField(default=False)
+
+
 class Dragon(models.Model):
     name = models.CharField(max_length=50)
     d_type = models.CharField(max_length=100)
@@ -52,10 +58,7 @@ class Dragon(models.Model):
        return reverse('detail', kwargs={'dragon_id' : self.id })
 
 
-class Loot(models.Model):
-    name = models.CharField(max_length=50)
-    value = models.IntegerField()
-    magic = BooleanField()
+
     
     
   

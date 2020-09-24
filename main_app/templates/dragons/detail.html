@@ -41,7 +41,49 @@
   </div>
 </div>
 
-
+<hr>
+<div class="row">
+  <div class="col s6">
+    <h3>{{ dragon.name }}'s Loot</h3>
+    {% if dragon.loot.count %}
+      {% for loot in dragon.loot.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A  {{ loot.value }}</span> {{ toy.name }}
+            </span>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Loot :(</h5>
+    {% endif %}
+  </div>
+  <!-- Available Loot will come after this line -->
+</div>
+<!-- Available toys will come after this line -->
+<div class="col s6">
+  <h3>Available Loot</h3>
+  {% if loot.count %}
+    {% for loot in loot.all %}
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">
+            A {{ loot.value }}</span> {{ loot.name }}
+          </span>
+        </div>
+        <div class="card-action">
+          <form action="" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn">Add</button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <h5>{{dragon.name}} Already Has All Loot Available</h5>
+  {% endif %}
+</div>
 
 
 <script>

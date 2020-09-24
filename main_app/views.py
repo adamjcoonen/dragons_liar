@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 # this is the added import for responce
-from .models import Dragon, Adventurer
+from .models import Dragon, Adventurer, Loot
 from .forms import AgeForm, AdventurerForm
 
 
@@ -63,10 +63,15 @@ def dragons_index(request):
 
 def dragons_detail(request, dragon_id):
     dragon = Dragon.objects.get(id=dragon_id)
+    # the loot the dragon as gathered to its horde
+    loot_dragon_doesnt_have = Loot.objects.exclude(id__in = dragon.loot.all().values_list('id'))
     #include the adventuerers that are 'slain'
     adventurer_form = AdventurerForm()
     return render(request, 'dragons/detail.html',
-     { 'dragon': dragon, 'adventurer_form' : adventurer_form })
+     { 'dragon': dragon, 'adventurer_form' : adventurer_form,
+     # Add the toys to be displayed
+    'loot': loot_dragon_doesnt_have
+     })
 
 def add_adventurer(request, dragon_id):
   # create a ModelForm instance using the data in request.POST
@@ -78,4 +83,9 @@ def add_adventurer(request, dragon_id):
     new_adventurer = form.save(commit=False)
     new_adventurer.dragon_id = dragon_id
     new_adventurer.save()
+  return redirect('detail', dragon_id=dragon_id)
+
+def assoc_loot(request, cat_id, loot_id):
+  # Note that you can pass a toy's id instead of the whole object
+  Dragon.objects.get(id=dragon_id).loot.add(loot_id)
   return redirect('detail', dragon_id=dragon_id)
