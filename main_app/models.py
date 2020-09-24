@@ -4,8 +4,8 @@ from django.urls import reverse
 import random
 # Create your models here.
 
-def lootRand():
-        return random.randint(1,6)
+# def lootRand():
+#         return random.randint(1,6)
       
 TYPES = (
     ('F', 'Fighter'),
@@ -50,15 +50,16 @@ class Dragon(models.Model):
        return reverse('detail', kwargs={'dragon_id' : self.id })
 
 
-class Loot(models.Model):
-    name = models.CharField(max_length=50)
-    color = models.CharField(max_length=20)
+# class Loot(models.Model):
+#     name = models.CharField(max_length=50)
+#     color = models.CharField(max_length=20)
   
 
 
-# Add new Feeding model below Cat model
+# Add new Feeding model below dragon model
 class Adventurer(models.Model):
-    lootnumber = models.PositiveSmallIntegerField(default=lootRand())
+    date = models.DateField()
+    # lootnumber = models.PositiveSmallIntegerField(default=lootRand())
     adventurer_type = models.CharField(
         max_length=1,
         #add choices
@@ -70,7 +71,7 @@ class Adventurer(models.Model):
     
     def __str__(self):
         # this is a Friendly value for the TYPE of adventurer
-        return f"{self.get_adventurer_type_display()} with {self.lootnumber} loot"
+        return f"{self.get_adventurer_type_display()} on {self.date} "
     class Meta:
-        ordering = ['-lootnumber']
+        ordering = ['-date']
 

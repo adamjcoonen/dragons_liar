@@ -15,4 +15,4 @@ class AgeForm(ModelForm):
 class AdventurerForm(ModelForm):
   class Meta:
     model = Adventurer
-    fields = ['lootnumber', 'adventurer_type']
+    fields = ['date', 'adventurer_type']

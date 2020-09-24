@@ -28,10 +28,10 @@
     <tr><th>Total Loots</th><th>Type</th></tr>
   </thead>
   <tbody>
-    {% for adventurers in dragon.adventurer_set.all %}
+    {% for adventurer in dragon.adventurer_set.all %}
       <tr>
-        <td>{{adventurers.lootnumber}}</td>
-        <td>{{adventurers.get_adventurer_type_display}}</td>
+        <td>{{adventurer.date}}</td>
+        <td>{{adventurer.get_adventurer_type_display}}</td>
       </tr>
     {% endfor %}
   </tbody>

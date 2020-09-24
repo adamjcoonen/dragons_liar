@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
 # this is the added import for responce
-from .models import Dragon
+from .models import Dragon, Adventurer
 from .forms import AgeForm, AdventurerForm
 
 
