@@ -1,11 +1,12 @@
 
+from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+# from django.views.generic import ListView, DetailView
 
-from django.shortcuts import render
-from django.views.generic.edit import CreateView
 
 # this is the added import for responce
 from .models import Dragon
-from .forms import AgeForm
+from .forms import AgeForm, AdventurerForm
 
 
 
@@ -33,6 +34,21 @@ from .forms import AgeForm
 
 
 # Create your views here.
+
+class DragonCreate(CreateView):
+    model = Dragon
+    fields = ['name', 'd_type', 'subtype', 'age', 'lore']
+    success_url = '/dragons_index/'
+
+class DragonUpdate(UpdateView):
+    model = Dragon
+    # if I don't place the name field it isn't called and can't rename
+    fields  = ['d_type', 'subtype','age' ,'lore']
+
+class DragonDelete(DeleteView):
+    model = Dragon
+    # if I don't place the name field it isn't called and can't rename
+    success_url = '/dragons/'
 # home view 
 def home(request):
     return render(request,'home.html')
@@ -47,11 +63,19 @@ def dragons_index(request):
 
 def dragons_detail(request, dragon_id):
     dragon = Dragon.objects.get(id=dragon_id)
-    return render(request, 'dragons/detail.html', { 'dragon': dragon})
+    #include the adventuerers that are 'slain'
+    adventurer_form = AdventurerForm()
+    return render(request, 'dragons/detail.html',
+     { 'dragon': dragon, 'adventurer_form' : adventurer_form })
 
-
-class DragonCreate(CreateView):
-    model = Dragon
-    fields = '__all__'
-    
-
+def add_adventurer(request, dragon_id):
+  # create a ModelForm instance using the data in request.POST
+  form = AdventurerForm(request.POST)
+  # validate the form
+  if form.is_valid():
+    # don't save the form to the db until it
+    # has the dragon_id assigned
+    new_adventurer = form.save(commit=False)
+    new_adventurer.dragon_id = dragon_id
+    new_adventurer.save()
+  return redirect('detail', dragon_id=dragon_id)

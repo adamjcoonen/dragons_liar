@@ -1,10 +1,21 @@
 from django.db import models
-# import the reverse 
+# Import the reverse function
 from django.urls import reverse 
-
+import random
 # Create your models here.
 
-
+def lootRand():
+        return random.randint(1,6)
+      
+TYPES = (
+    ('F', 'Fighter'),
+    ('W', 'Wizard'),
+    ('M', 'Monk'),
+    ('R', 'Ranger'),
+    ('B', 'Barbarian'),
+    ('T', 'Thief'),
+    ('C', 'Cleric'),
+)
 
 AGES = (
     ('H', 'Wyrmling'),
@@ -32,8 +43,34 @@ class Dragon(models.Model):
     lore = models.CharField(max_length=1000)
 
     def __str__(self):
-        return self.name
+       return self.name
 
 
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'dragon_id' : self.id })
+       return reverse('detail', kwargs={'dragon_id' : self.id })
+
+
+class Loot(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+  
+
+
+# Add new Feeding model below Cat model
+class Adventurer(models.Model):
+    lootnumber = models.PositiveSmallIntegerField(default=lootRand())
+    adventurer_type = models.CharField(
+        max_length=1,
+        #add choices
+        choices=TYPES,
+        #this sets the default value to be fighter or first in tuple)
+        default=TYPES[0][0]
+    )
+    dragon = models.ForeignKey(Dragon, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        # this is a Friendly value for the TYPE of adventurer
+        return f"{self.get_adventurer_type_display()} with {self.lootnumber} loot"
+    class Meta:
+        ordering = ['-lootnumber']
+

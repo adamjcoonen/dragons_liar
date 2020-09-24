@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class MyDragonsConfig(AppConfig):
-    name = 'my_dragons'
+    name = 'main_app'
