@@ -12,7 +12,7 @@ urlpatterns = [
     path('dragons/create/', views.DragonCreate.as_view(), name='dragon_create'),
     path('dragons/<int:pk>/update/', views.DragonUpdate.as_view(), name='dragon_update'),
     path('dragons/<int:pk>/delete/', views.DragonDelete.as_view(), name='dragon_delete'),
-    path('cats/<int:cat_id>/add_adventurer/', views.add_adventurer, name='add_feeding'),
+    path('dragons/<int:dragon_id>/add_adventurer/', views.add_adventurer, name='add_adventurer'),
 ]
 
 

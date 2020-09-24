@@ -41,6 +41,8 @@ class Dragon(models.Model):
         default=[0][0],
     )
     lore = models.CharField(max_length=1000)
+    # this is the many to many 
+    loot = models.ManyToManyField(Loot)
 
     def __str__(self):
        return self.name
@@ -50,15 +52,18 @@ class Dragon(models.Model):
        return reverse('detail', kwargs={'dragon_id' : self.id })
 
 
-# class Loot(models.Model):
-#     name = models.CharField(max_length=50)
-#     color = models.CharField(max_length=20)
+class Loot(models.Model):
+    name = models.CharField(max_length=50)
+    value = models.IntegerField()
+    magic = BooleanField()
+    
+    
   
 
 
 # Add new Feeding model below dragon model
 class Adventurer(models.Model):
-    date = models.DateField()
+    date = models.DateField('Date of incursion')
     # lootnumber = models.PositiveSmallIntegerField(default=lootRand())
     adventurer_type = models.CharField(
         max_length=1,
