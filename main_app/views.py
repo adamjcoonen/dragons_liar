@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 
 # this is the added import for responce
 from .models import Dragon
+from .forms import AgeForm
 
 
 
@@ -51,6 +52,6 @@ def dragons_detail(request, dragon_id):
 
 class DragonCreate(CreateView):
     model = Dragon
-    fields = ['name', 'd_type', 'subtype', 'age' , 'lore' ]
-
+    fields = '__all__'
+    
 
