@@ -26,8 +26,8 @@
                     <li><a href="{% url 'loot_create' %}">Add a Loot</a></li>
                     <li><a href="{% url 'loot_index' %}">View All Loots</a></li>
                     <li><a href="{% url 'dragon_index' %}">View All My Dragons</a></li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
-                    <!-- New link below -->
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
                     {% endif %}

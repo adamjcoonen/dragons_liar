@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # this is the added import for responce
@@ -65,11 +66,11 @@ def home(request):
 # this is the about function for see about dragon collector
 def about(request):
     return render(request, 'about.html')
-
+@login_required
 def dragons_index(request):
     dragons = Dragon.objects.all()
     return render(request, 'dragons/dragon_index.html', {'dragons' : dragons })
-
+@login_required
 def dragons_detail(request, dragon_id):
     dragon = Dragon.objects.get(id=dragon_id)
     # the loot the dragon as gathered to its horde
@@ -80,7 +81,7 @@ def dragons_detail(request, dragon_id):
      { 'dragon': dragon, 'adventurer_form' : adventurer_form,
      # Add the loot to be displayed
     'loot': loot_dragon_doesnt_have})
-
+@login_required
 def add_adventurer(request, dragon_id):
   # create a ModelForm instance using the data in request.POST
   form = AdventurerForm(request.POST)
@@ -92,12 +93,12 @@ def add_adventurer(request, dragon_id):
     new_adventurer.dragon_id = dragon_id
     new_adventurer.save()
   return redirect('detail', dragon_id=dragon_id)
-
+@login_required
 def assoc_loot(request, dragon_id, loot_id):
   # Note that you can pass a loot's id instead of the whole object
     Dragon.objects.get(id=dragon_id).loot.add(loot_id)
     return redirect('detail', dragon_id=dragon_id)
-
+@login_required
 def unassoc_loot(request, dragon_id, loot_id):
   # Note that you can pass a loot's id instead of the whole object
     Dragon.objects.get(id=dragon_id).loot.remove(loot_id)

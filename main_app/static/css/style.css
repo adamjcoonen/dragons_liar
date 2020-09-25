@@ -4,7 +4,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-color: gold;
+    background-image: ;
   }
   
   main {
@@ -19,4 +19,20 @@ body {
 
   nav {
       background-color: red;
+  }
+
+
+  .btn {
+    background-color: red;
+  }
+
+  .card-content {
+    background-image: url('https://image.shutterstock.com/image-illustration/head-angry-red-dragon-on-260nw-1069548530.jpg');
+    display: block;
+    align-items: baseline;
+    color: white;
+  }
+
+  div .card-action {
+    background-color: black;
   }
