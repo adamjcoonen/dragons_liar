@@ -5,10 +5,10 @@ from .models import Dragon, Adventurer
 
 
 
-class AgeForm(ModelForm):
-    class Meta:
-        model = Dragon
-        fields = ['age']
+# class AgeForm(ModelForm):
+#     class Meta:
+#         model = Dragon
+#         fields = ['age']
 
 
 

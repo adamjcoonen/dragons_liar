@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Loot List</h1>
+
+{% for loot in loot_list %}
+  <a href="{% url 'loot_detail' loot.id %}">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ loot.name }}</span>
+            <p>Value: {{ loot.value }}</p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

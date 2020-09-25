@@ -50,7 +50,7 @@
         <div class="card">
           <div class="card-content">
             <span class="card-title">
-              A  {{ loot.value }}</span> {{ toy.name }}
+              A  {{ loot.value }}</span> {{ loot.name }}
             </span>
           </div>
         </div>
@@ -61,7 +61,7 @@
   </div>
   <!-- Available Loot will come after this line -->
 </div>
-<!-- Available toys will come after this line -->
+<!-- Available Loot will come after this line -->
 <div class="col s6">
   <h3>Available Loot</h3>
   {% if loot.count %}
@@ -69,11 +69,11 @@
       <div class="card">
         <div class="card-content">
           <span class="card-title">
-            A {{ loot.value }}</span> {{ loot.name }}
+            A {{ loot.value }} gold piece</span> {{ loot.name }}
           </span>
         </div>
         <div class="card-action">
-          <form action="" method="post">
+          <form action="{% url 'assoc_loot' dragon.id loot.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn">Add</button>
           </form>

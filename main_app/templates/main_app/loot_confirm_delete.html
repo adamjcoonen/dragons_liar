@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Vanquish Dragon</h1>
+  <h1>Delete Loot</h1>
 
-  <h4>Are you sure you want to Vanquish <span class="red-text">{{ object.name }}</span>?</h4>
+  <h4>Are you sure you want to delete <span class="red-text">{{ object.name }}</span>?</h4>
 
   <form action="" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes - Delete!" class="btn">
-    <a href="{% url 'detail' dragon.id %}">Cancel</a>
+    <a href="{% url 'loot_detail' object.id %}">Cancel</a>
   </form>
 {% endblock %}

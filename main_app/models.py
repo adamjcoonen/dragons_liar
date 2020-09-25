@@ -1,12 +1,11 @@
 from django.db import models
-# Import the reverse function
 from django.urls import reverse 
-import random
+from datetime import date
+#for the user
+from django.contrib.auth.models import User
 # Create your models here.
 
-# def lootRand():
-#         return random.randint(1,6)
-      
+
 TYPES = (
     ('F', 'Fighter'),
     ('W', 'Wizard'),
@@ -34,7 +33,12 @@ AGES = (
 class Loot(models.Model):
     name = models.CharField(max_length=50)
     value = models.IntegerField()
-    magic = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('loot_detail', kwargs={'pk', self.id})
 
 
 class Dragon(models.Model):
@@ -50,6 +54,8 @@ class Dragon(models.Model):
     # this is the many to many 
     loot = models.ManyToManyField(Loot)
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
     def __str__(self):
        return self.name
 
@@ -64,7 +70,7 @@ class Dragon(models.Model):
   
 
 
-# Add new Feeding model below dragon model
+# Add new Adventurer model below dragon model
 class Adventurer(models.Model):
     date = models.DateField('Date of incursion')
     # lootnumber = models.PositiveSmallIntegerField(default=lootRand())
