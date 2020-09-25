@@ -4,7 +4,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    background-image: ;
+    background-color: gold;
   }
   
   main {
@@ -35,4 +35,9 @@ body {
 
   div .card-action {
     background-color: black;
+  }
+
+  .card-content-loot {
+    background-image: url('https://cdn.pixabay.com/photo/2016/09/01/21/54/coins-1637722_960_720.jpg');
+    color: white;
   }

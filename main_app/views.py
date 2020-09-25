@@ -106,6 +106,7 @@ def unassoc_loot(request, dragon_id, loot_id):
 
 class LootList(LoginRequiredMixin, ListView):
     model = Loot
+    
 
 class LootDetail(LoginRequiredMixin, DetailView):
     model = Loot
@@ -113,6 +114,7 @@ class LootDetail(LoginRequiredMixin, DetailView):
 class LootCreate(LoginRequiredMixin, CreateView):
     model = Loot
     fields = '__all__'
+    success_url = '/loot/'
 
 class LootUpdate(LoginRequiredMixin, UpdateView):
     model = Loot
