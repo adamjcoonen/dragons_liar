@@ -136,7 +136,7 @@ def signup(request):
       user = form.save()
       # This is how we log in a user via code
       login(request, user)
-      return redirect('index')
+      return redirect('dragon_index')
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request
