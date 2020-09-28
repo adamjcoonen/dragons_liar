@@ -42,7 +42,7 @@ from .forms import  AdventurerForm
 class DragonCreate(LoginRequiredMixin, CreateView):
     model = Dragon
     fields = ['name', 'd_type', 'subtype', 'age', 'lore']
-    success_url = '/dragons_index/'
+    
 
     def form_valid(self, form):
     # Assign the logged in user (self.request.user)

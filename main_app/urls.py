@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     #this is the route to view dragons
-    path('dragons/', views.dragons_index, name='dragon_index'),
+    path('/', views.dragons_index, name='dragon_index'),
     #page for he individual dragon details
     path('dragons/<int:dragon_id>', views.dragons_detail, name='detail'),
     path('dragons/create/', views.DragonCreate.as_view(), name='dragon_create'),
